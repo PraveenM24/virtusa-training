@@ -1,0 +1,82 @@
+-----------------------------------------
+Oracle SQL - Assignment 3 - 02.09.22, Fri
+-----------------------------------------
+
+66. select first_name||' '||last_name as name from employees where salary=(select max(salary) from employees);
+
+67. select employee_id, first_name||' '||last_name as name from employees where job_id like '%clerk' and salary=(select max(salary) from employees where job_id like '%clerk');
+
+68. select first_name||' '||last_name as name from employees where job_id like '%man' and salary>(select max(salary) from employees where job_id like '%clerk');
+
+69. select first_name from employees where job_id like '%clerk' and salary>(select min(salary) from employees where job_id like '%man');
+
+70. select first_name from employees where salary>(select salary from employees where last_name like 'jones') or salary>(select salary from employees where last_name like 'scott');
+
+71. select first_name,salary,department_id from employees where salary in (select max(salary) from employees group by department_id);
+
+72. select first_name,salary,job_id from employees where salary in (select max(salary) from employees group by job_id);
+
+73. 
+
+74. select job_id,sum(salary) from employees group by job_id having sum(salary)>(select max(salary) from employees where job_id like '%man');
+
+75. select first_name from employees where department_id=10 and salary >any(select salary from employees where department_id not in 10);
+
+76. select e.first_name from employees e where e.department_id=10 and e.salary >all(select e2.salary from employees e2 where e2.department_id!=e.department_id);
+
+77. select job_id from employees where department_id=10 and job_id in (select job_id from employees where department_id=20);
+ 
+78. select distinct (job_id),department_id from employees where department_id=10 or department_id=20;
+
+79. select distinct (job_id) from employees where department_id=10;
+
+80. select * from employees where employee_id not in (select manager_id from employees where manager_id is not null);
+
+81. select * from employees inner join departments on employees.department_id = departments.department_id where department_name='sales' and grade=3;
+
+82. update employees set employees.salary = employees.salary + (employees.salary * .1) where commission_pct is null; 
+
+83. select first_name||' '||last_name as name 
+	from employees emp 
+		inner join departments dep on emp.department_id = dep.department_id 
+		inner join locations loc on loc.location_id = dep.location_id 
+	where hire_date < '31-dec-1982' and state_province in ('chicago', 'newyork'); 
+
+84. select first_name||' '||last_name as employee_name, job_title, department_name, city||', '||state_province as location 
+	from employees emp
+		inner join jobs on emp.job_id = jobs.job_id
+		inner join departments dep on emp.department_id = dep.department_id
+		inner join locations loc on dep.location_id = loc.location_id  
+	where emp.job_id like '%mgr';
+
+85. 
+
+86. 
+
+87. select first_name, job_title, salary, department_name
+	from employees emp 
+		inner join jobs on emp.job_id = jobs.job_id
+		inner join departments dep on emp.department_id = dep.department_id
+	group by emp.department_id;
+
+88. select first_name||' '||last_name as employee_name, job_title, salary, department_name
+	from employees emp 
+		inner join jobs on emp.job_id = jobs.job_id
+		inner join departments dep on emp.department_id = dep.department_id
+	where emp.job_id not like '%clerk'
+	order by salary;
+	     	
+
+89. 
+
+90. select employee_id, first_name, salary from employees where salary=(select max(salary) from employees);
+
+91. select * from employees where salary>= (select (max(salary) + min(salary))/2 from employees);
+
+92. select department_id, count () from employees group by department_id having count ()>3;
+
+93. select * from employees m where m.employee_id in (select manager_id from employees) and m.salary > (select avg(e.salary)from employees e where e.manager_id = m.employee_id);
+
+94. select e.first_name,e.salary,e.commission_pct,(select sum(salary+commission_pct) from employees) netpay from employees e where (select sum(salary+commission_pct) from employees) > any (select salary from employees where employee_id =e.employee_id);
+
+95. select * from employees w,employees m where w.manager_id = m.employee_id and w.salary> m.salary;

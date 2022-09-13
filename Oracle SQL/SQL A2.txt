@@ -1,0 +1,83 @@
+-----------------------------------------
+Oracle SQL - Assignment 2 - 01.09.22, Thu
+-----------------------------------------
+
+26. select count(employee_id) as total_employees from employees;
+
+27. select sum(salary) as total_salary_paid_per_month from employees;
+
+28. select max(salary) as max_salary_paid from employees;
+
+29. select min(salary) as min_salary_paid from employees;
+
+30. select avg(salary) as avg_salary from employees;
+
+31. select max(salary) as max_salary_paid_to_clerk from employees where job_id like '%clerk';
+
+32. select max(salary) as max_salary_paid_to_dep10 from employees where department_id = 20;
+
+33. select min(salary) as min_salary_paid_to_slmn from employees where job_id like '%asst';
+
+34. select avg(salary) as avg_salary_mgr from employees where job_id like '%mgr';
+
+35. select sum(salary) as total_analyst_salary from employees where job_id like '%asst' and department_id = 40;
+
+36. select first_name||' '||last_name as name, salary from employees order by salary;
+
+37. select first_name||' '||last_name as name, salary from employees order by salary desc;
+
+38. select first_name||' '||last_name as name from employees order by name;
+
+39. select first_name||' '||last_name as name, department_id, salary from employees order by name, department_id, salary;
+
+40. select first_name||' '||last_name as name, (salary*12) as annual_salary from employees order by annual_salary desc; 
+
+41. select first_name||' '||last_name as name, ((salary + (salary*.15) + (salary*.1)) - (salary*.05)) as total_salary, salary*.15 as hra, salary*.1 as da, salary*.05 as pf from employees;
+
+42. select department_id, count(department_id) as employee_count from employees group by department_id;
+
+43. select job_id, count(job_id) as employee_count from employees group by job_id;
+
+44. select department_id, sum(salary) as total_salary from employees group by department_id;
+
+45. select department_id, max(salary) as max_salary from employees group by department_id;
+
+46. select job_id, sum(salary) as total_salary from employees group by job_id;
+
+47. select job_id, sum(salary) as total_salary from employees group by job_id;
+
+48. select department_id, count(department_id) as total_employees from employees group by department_id having count(department_id) > 3;
+
+49. select job_id, sum(salary) as total_salary from employees group by job_id having sum(salary)>40000;
+
+50. select job_id, count(employee_id) from employees group by job_id having count(job_id) > 3;
+
+51. select * from employees where first_name like 'a_b'; 
+
+52. select instr('computer maintenance corporation', 'a', 1) from dual;
+
+53. select replace(job_id, '%mgr', '%boss') from employees;
+
+54. select upper(first_name||' '||last_name) as name from employees;
+
+55. select lower(first_name||' '||last_name) as name from employees;
+
+56. select initcap(first_name||' '||last_name) as name from employees;
+
+57. select length('praveenm') as name_len from dual;
+
+58. select sum(length(first_name||last_name)) as name_len from employees;
+
+59. select concat(first_name||' '||last_name||' ', employee_id) as employee from employees;
+
+60. select substr('oracle', 2, 3) from dual;
+
+61. select employee_id, first_name||' '||last_name as name, decode (department_id, 10, 'admin', 20, 'marketing', 30, 'purchasing', 40, 'hr', 50, 'shipping', 60, 'it', 70, 'pr', 80, 'sales', 90, 'executive', 100, 'finance', 110, 'accounting') as department from employees;
+
+62. select to_char(sysdate, 'ddth month day year') from dual;
+
+63. select first_name||' has joined the company on '|| to_char(hire_date, 'dayddth month year') from employees;
+
+64. select next_day(sysdate, 'saturday') from dual;
+
+65. select add_months(sysdate, -3) from dual;

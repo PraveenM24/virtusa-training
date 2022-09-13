@@ -1,0 +1,54 @@
+-----------------------------------------
+Oracle SQL - Assignment 1 - 01.09.22, Thu
+-----------------------------------------
+
+1. select * from employees; 
+
+2. select * from department;
+
+3. select first_name ||' '|| last_name, job_id from employees;
+
+4. select first_name ||' '|| last_name, salary from employees;
+
+5. select employee_id, salary+(salary*nvl(commission_pct, 0)) as total_salary from employees;
+
+6. select first_name ||' '|| last_name, 12*(salary+(salary*nvl(commission_pct, 0))) as annual_salary from employees;
+
+7. select first_name ||' '|| last_name from employees where department_id = 10;
+
+8. select first_name ||' '|| last_name from employees where job_id like '%clerk' and salary >= 3000;
+
+9. select employee_id, first_name ||' '|| last_name as name from employees where commission_pct is not null;
+
+10. select employee_id, first_name ||' '|| last_name as name from employees where commission_pct is null;
+
+11. select first_name||' '||last_name as name from employees where job_id in ('%clerks', 'sh_man', 'ad_asst') and salary>=3000;
+
+12. select first_name||' '||last_name as name from employees where to_char(sysdate, 'yyyy') - to_char(hire_date, 'yyyy') >= 5;
+
+13. select * from employees where hire_date between to_date('30/06/1990', 'dd/mm/yyyy') and to_date('31/12/1990', 'dd/mm/yyyy');
+
+14. select sysdate from dual;
+
+15. select * from all_users;
+
+16. select * from all_tables;
+
+17. show user;
+
+18. select first_name||' '||last_name as name from employees where department_id in (10, 20, 40) or job_id in ('%clerks', 'sh_man', 'ad_asst');
+
+19. select first_name||' '||last_name as name from employees where first_name like 's%';
+
+20. select first_name||' '||last_name as name from employees where lower(first_name) like '%s' or lower(last_name) like '%s'; 
+
+21. select first_name from employees where first_name like '_a%';
+
+22. select first_name from employees where length(first_name)=5;
+
+23. select first_name||' '||last_name as name from employees where job_id not in ('%mgr');
+
+24. select first_name||' '||last_name as name from employees where job_id not in ('%clerks', '%man', '%asst');
+
+25. set pause on; 
+    select * from employees;

@@ -1,0 +1,63 @@
+-----------------------------------------
+Oracle SQL - Assignment 4 - 03.09.22, Sat
+-----------------------------------------
+
+96. select d.department_id from departments d where not exists(select * from employees e where d.department_id=e.department_id);
+
+97. select  first_name||' '||last_name as employee_name, salary from employees where length(salary) >= 3 ;
+
+98. select  first_name||' '||last_name as employee_name, hire_date from employees where TO_CHAR(hire_date,'MON')='DEC';
+
+99. select first_name||' '||last_name as employee_name from employees where upper(first_name) like '%A%' or upper(last_name) like '%A%';
+
+100. select first_name||' '||last_name as employee_name, salary, hire_date from employees where (salary*.1) = to_char(hire_date, 'yyyy');
+
+101. select first_name||' '||last_name as employee_name, job_id from employees where  job_id in(select job_id from jobs where job_title like '%Sales%' or job_title like '%Research%');
+
+102. select first_name||' '||last_name as employee_name, hire_date from employees where to_char(hire_date,'DD') < '15';
+
+103. delete from employees where department_id in (select department_id from employees group by department_id having count(*)<3);
+
+104. select d.department_id from departments d where not exists(select * from employees e where d.department_id=e.department_id);
+
+105. select first_name||' '||last_name as employee_name from employees where job_id like '%MGR';
+
+106. select * from employees where manager_id=(select employee_id from employees where first_name='Nancy'); //(Ques modified to Nancy)
+
+107. select * from employees where rownum<11 minus select * from employees where rownum<10;
+
+108. select * from employees where rownum<11 minus select * from employees where rownum<10;
+
+109. create table employee_clone as select * from employees;
+
+110. select distinct(first_name) from employees e where first_name in (select first_name from employees where e.employee_id<>employee_id);
+
+111. select first_name, reverse(first_name) as reverse_name from employees;
+
+112. select first_name,hire_date from employees where to_char(hire_date,'dd')=department_id;
+
+113. select substr(first_name,1,1),first_name from employees;
+
+114. delete from employees where (sysdate-hire_date)/365>2;
+
+115. update employees set commission_pct=.1 where commission_pct is null;
+
+116. update employees set commission_pct=commission_pct+.1 where commission_pct is not null;
+
+117. select e.employee_id,e.first_name,d.location_id from employees e inner join departments d using(department_id);
+
+118. select e.first_name,d.department_name from employees e left outer join departments d using(department_id);
+
+119. select first_name||' '||last_name as name, department_name from employees e inner join departments d on e.department_id = d.department_id;
+
+120. delete from employees where rowid not in (select min(rowid) from employees group by first_name, last_name, email);
+
+121. select * from employees where rownum<8 minus select * from employees where rownum<5;
+
+122. select * from employees where rownum<=10;
+
+123. select salary from(select salary from employees order by salary desc) where rownum<=3;
+
+124. select first_name,department_id,salary from employees where salary>(select max(avg(salary)) from employees group by department_id);
+
+

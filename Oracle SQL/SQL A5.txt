@@ -1,0 +1,88 @@
+-----------------------------------------
+Oracle SQL - Assignment 5 - 04.09.22, Sun
+-----------------------------------------
+
+125. create table emp(empno number(4))
+
+126. alter table emp add(ename varchar2(20));
+
+127. alter table emp add primary key(empno);
+
+128. alter table emp modify(ename varchar2(30));
+
+129. alter table emp add(salary number(10));
+
+130. alter table emp add constraint check_salary_const check(salary<=10000);
+
+131. alter table emp modify constraint check_salary_const disable;
+
+132. alter table emp modify constraint check_salary_const enable;
+
+133. alter table emp add(mgr number(4));
+
+134. alter table emp add constraint mgr_dpt FOREIGN KEY(mgr) REFERENCES emp(empno);
+
+135. alter table emp add(department_id number(10));
+
+136. alter table emp add constraint dept_fkey foreign key(department_id) references departments(department_id);
+
+137. alter table <table_name> add constraint <constraint_name (optional)><constraint type>;
+
+138. create table new_emp as select * from emp;
+
+139. create table new_emp as select employee_id, first_name, department_id from employees where 1=2;
+
+140. create view test_view as select first_name, last_name, job_id, department_id from employees;
+
+141. update test_view set department_id = 10 where last_name = 'King';
+
+142. create view sales_employee as select employee_id, first_name||' '||last_name as employee_name, department_id from employees where department_id=(select department_id from departments where department_name='Sales');
+
+143. create or replace force view test_view as select first_name, last_name, job_id, department_id from employees with read only;
+
+144. create view sample_view1 as select e.first_name||' '||e.last_name as employee_name, d.department_name from employees e, departments d where e.department_id = d.department_id;
+
+145. CREATE SEQUENCE sequence_1
+	start with 1
+	increment by 1
+	minvalue 0
+	maxvalue 100
+	cycle;
+
+146.
+	sequence:
+	CREATE SEQUENCE sequence_1
+		start with 1
+		increment by 1
+		minvalue 0
+		maxvalue 100
+		cycle;
+	table:
+	CREATE TABLE students
+	( 
+		ID number(10),
+		NAME char(20)
+	);
+	dml:
+	INSERT into students VALUES(sequence_1.nextval,'Praveen');
+	INSERT into students VALUES(sequence_1.nextval,'Prathik');
+	INSERT into students VALUES(sequence_1.nextval,'Roy Richard');
+
+147.
+
+148. create user praveen identified by PraveenM
+	grant permission:
+	grant select on employees to praveen
+	grant create views,create session to praveen
+	/
+
+149. create role admin
+	grant create session to admin
+	grant admin to praveen 
+	revoke create session from admin
+	/
+
+150. select object_name, object_type from user_objects;
+
+
+
